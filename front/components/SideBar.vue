@@ -5,9 +5,9 @@
         <img src="img/logo.png" alt="logo.png" class="side-img-logo">
       </div>
       <div class="side-list">
-        <div @click="$router.push('/')" class="side-item">
+        <div class="side-item">
           <img src="img/home.png" class="side-icon">
-          <p>ホーム</p>
+          <NuxtLink to="/">ホーム</NuxtLink>
         </div>
         <div class="side-item" @click="logout">
           <img src="img/logout.png" class="side-icon">
@@ -44,8 +44,11 @@ export default {
       firebase.auth().onAuthStateChanged(async (user) => {
       const sendData = {
         content: this.content,
+        user_id: user.uid,
       };
         await this.$axios.post("http://127.0.0.1:8000/api/post/", sendData);
+        this.content = "";
+        alert("投稿が完了しました")
       });
     },
   },
