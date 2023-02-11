@@ -2,9 +2,9 @@
   <div class="container">
     <div class="form">
       <h1 class="form-ttl">新規登録</h1>
-      <input v-model="name" type="text" placeholder="ユーザーネーム"><br/>
-      <input v-model="email" type="email" placeholder="メールアドレス"/><br/>
-      <input v-model="password" type="password" placeholder="パスワード"/><br/>
+      <input v-model="name" type="text" placeholder="ユーザーネーム" required><br/>
+      <input v-model="email" type="email" placeholder="メールアドレス" required/><br/>
+      <input v-model="password" type="password" placeholder="パスワード" required/><br/>
       <button @click="register">新規登録</button>
     </div>
   </div>

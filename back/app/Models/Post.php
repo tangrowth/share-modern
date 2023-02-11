@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $guarded = array('id');
     public function comments()
     {
         return $this->hasMany('App\Models\Comment');
