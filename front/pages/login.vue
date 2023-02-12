@@ -2,13 +2,9 @@
   <div class="container">
     <div class="form">
       <h1 class="form-ttl">ログイン</h1>
-      <label>
-        メールアドレス： <input v-model="email" type="email" required />
-      </label>
+      <input v-model="email" type="email" placeholder="メールアドレス" required />
       <br />
-      <label>
-        パスワード： <input v-model="password" type="password" required />
-      </label>
+      <input v-model="password" type="password" placeholder="パスワード" required />
       <br />
       <button @click="login">ログイン</button>
     </div>

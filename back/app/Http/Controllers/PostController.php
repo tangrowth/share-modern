@@ -14,10 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $items = Post::all();
-        return response()->json([
-            'data' => $items
-        ], 200);
+        $posts = Post::with(['user', 'comments', 'favorites'])->get();
+        return response()->json(['posts' => $posts],200);
     }
 
     public function store(Request $request)
@@ -33,8 +31,17 @@ class PostController extends Controller
         //
     }
 
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $item = Post::where('id', $post->id)->delete();
+        if ($item) {
+            return response()->json([
+                'message' => 'Deleted successfully',
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Not found',
+            ], 404);
+        }
     }
 }

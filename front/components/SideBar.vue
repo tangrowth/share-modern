@@ -5,9 +5,9 @@
         <img src="img/logo.png" alt="logo.png" class="side-img-logo">
       </div>
       <div class="side-list">
-        <div class="side-item">
+        <div class="side-item" @click="$router.push('/')">
           <img src="img/home.png" class="side-icon">
-          <NuxtLink to="/">ホーム</NuxtLink>
+          <p>ホーム</p>
         </div>
         <div class="side-item" @click="logout">
           <img src="img/logout.png" class="side-icon">
@@ -48,7 +48,7 @@ export default {
       };
         await this.$axios.post("http://127.0.0.1:8000/api/post/", sendData);
         this.content = "";
-        alert("投稿が完了しました")
+        alert("投稿が完了しました");
       });
     },
   },
