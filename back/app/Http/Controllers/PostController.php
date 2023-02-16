@@ -14,8 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['user', 'comments', 'favorites'])->get();
-        return response()->json(['posts' => $posts],200);
+        $items = Post::with(['user', 'comments', 'favorites'])->get();
+        return response()->json(['data' => $items],200);
     }
 
     public function store(Request $request)
@@ -26,9 +26,18 @@ class PostController extends Controller
         ], 201);
     }
 
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        $item = Post::with(['user', 'comments', 'favorites'])->find($post)->first();
+        if ($post) {
+            return response()->json([
+                'data' => $item
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Not found',
+            ], 404);
+        }
     }
 
     public function destroy(Post $post)
