@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       post: null,
+      comment: null,
     };
   },
   methods: {
@@ -37,6 +38,7 @@ export default {
         `http://localhost:8000/api/post/${this.$route.params.id}`
       );
       this.post = resData.data.data;
+      this.comments = resData.data.comments;
     },
     async insertComment() {
       firebase.auth().onAuthStateChanged(async (user) => {

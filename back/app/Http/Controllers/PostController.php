@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -29,9 +30,11 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $item = Post::with(['user', 'comments', 'favorites'])->find($post)->first();
+        $comments = Comment::where('post_id',$item->id)->get();
         if ($post) {
             return response()->json([
-                'data' => $item
+                'data' => $item,
+                'comments' => $comments,
             ], 200);
         } else {
             return response()->json([

@@ -11,8 +11,9 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $item = Comment::create($request->all());
+        $comment= Comment::with('user')->find($item)->first();
         return response()->json([
-            'data' => $item
+            'comment' => $comment
         ], 201);
     }
 }
